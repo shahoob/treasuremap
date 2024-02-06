@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { Torrentv2FileTree } from './torrent';
+import { ITorrent1, Torrentv2FileTree } from './torrent';
 
-const ITorrent1Schema = z.object({
+export const ITorrent1Schema = z.object({
   created: z.date().optional(),
   createdBy: z.string().optional(),
   info: z.object({
@@ -9,28 +9,28 @@ const ITorrent1Schema = z.object({
     files: z.array(
       z.object({
         path: z.array(z.string()).min(1),
-        length: z.number(),
+        length: z.number().min(1),
       })
     ).min(1),
   }),
-  name: z.string(),
 });
 
 /**
  * @internal
  */
-const _dirFileTree: z.ZodType<Torrentv2FileTree> = z.union([
+export const _dirFileTree: z.ZodType<Torrentv2FileTree> = z.union([
   z.lazy(() => z.record(z.string().min(1), _dirFileTree)),
   z.object({
     "": {
+      // @ts-ignore
       length: z.number(),
       piecesRoot: z.string().optional(),
     }
   })
 ]);
-const ITorrent2SchemaFileTree = z.record(z.string().min(1), _dirFileTree)
+export const ITorrent2SchemaFileTree = z.record(z.string().min(1), _dirFileTree)
 
-const ITorrent2Schema = ITorrent1Schema.omit({ info: true }).merge(
+export const ITorrent2Schema = ITorrent1Schema.omit({ info: true }).merge(
   z.object({
     info: z.object({
       name: z.string().optional(),
@@ -41,4 +41,14 @@ const ITorrent2Schema = ITorrent1Schema.omit({ info: true }).merge(
   })
 );
 
-const IHybridTorrentSchema = z.intersection(ITorrent1Schema, ITorrent2Schema);
+export const IHybridTorrentSchema = z.intersection(ITorrent1Schema, ITorrent2Schema);
+
+export function isTorrentv1(torrent: any): torrent is ITorrent1 {
+  try {
+    ITorrent1Schema.parse(torrent);
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
