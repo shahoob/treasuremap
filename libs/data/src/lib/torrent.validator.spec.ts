@@ -1,5 +1,7 @@
-import { ITorrent1 } from './torrent';
+import type { ITorrent1 } from './torrent';
 import { isTorrentv1 } from './torrent.validator';
+
+// TODO: Use real data
 
 describe('isTorrentv1', () => {
   it('should return true for valid torrent', () => {
