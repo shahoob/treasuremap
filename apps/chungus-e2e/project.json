@@ -1,18 +1,14 @@
 {
-  "name": "api-e2e",
+  "name": "chungus-e2e",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "implicitDependencies": [
-    "api"
-  ],
+  "implicitDependencies": ["chungus"],
   "projectType": "application",
   "targets": {
     "e2e": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{e2eProjectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
       "options": {
-        "jestConfig": "apps/api-e2e/jest.config.ts",
+        "jestConfig": "apps/chungus-e2e/jest.config.ts",
         "passWithNoTests": true
       }
     }
