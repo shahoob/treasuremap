@@ -61,5 +61,21 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "YjdkMDE3MTMtMDA2Ny00NDZmLWJlZjctMjEwMzFmY2FmMzlmfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "YjdkMDE3MTMtMDA2Ny00NDZmLWJlZjctMjEwMzFmY2FmMzlmfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview"
+      }
+    },
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    }
+  ]
 }
