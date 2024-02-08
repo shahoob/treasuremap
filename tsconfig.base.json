@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@treasuremap/data": ["libs/data/src/index.ts"],
-      "@treasuremap/test/test": ["libs/test/test/src/index.ts"]
+      "@treasuremap/data": ["libs/data/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
