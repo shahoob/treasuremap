@@ -4,25 +4,6 @@
   "sourceRoot": "apps/api/src",
   "projectType": "application",
   "targets": {
-    "build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apps/api",
-        "main": "apps/api/src/main.ts",
-        "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"],
-        "webpackConfig": "apps/api/webpack.config.js",
-        "generatePackageJson": true
-      },
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
-    },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
@@ -37,9 +18,6 @@
           "buildTarget": "api:build:production"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
