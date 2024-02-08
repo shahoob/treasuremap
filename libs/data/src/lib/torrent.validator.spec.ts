@@ -1,44 +1,21 @@
 import type { ITorrent1 } from './torrent';
 import { isTorrentv1 } from './torrent.validator';
-
-// TODO: Use real data
+import { torrents } from './support/torrents';
 
 describe('isTorrentv1', () => {
-  it('should return true for valid torrent', () => {
-    expect(isTorrentv1({
-      announceList: ['d'],
-      info: {
-        name: 'big chungus.mp4',
-        files: [{
-          length: 69420,
-          path: ['big chungus.mp4']
-        }]
-      },
-      infohash: Buffer.from('fgyfhuiwsfekld'),
-    })).toBe(true);
+  it.each(torrents.valid.v1)('should return true for valid torrent', (torrent) => {
+    expect(isTorrentv1(torrent)).toBe(true);
   });
 
-  it('should return false for invalid torrent', () => {
-    const invalidTorrent = {
-      announceList: ['udp://tracker.example.com:80'],
-      info: {
-        name: 'invalid_file.txt',
-        files: [{
-          length: 0, // Invalid length
-          path: []
-        }]
-      },
-      infohash: Buffer.from('1234567890abcdef1234567890abcdef12345678', 'hex'),
-    };
-    expect(isTorrentv1(invalidTorrent)).toBe(false);
-    expect(isTorrentv1('free virus')).toBe(false);
+  it.each(torrents.invalid.v1)('should return false for invalid torrent', (torrent) => {
+    expect(isTorrentv1(torrent)).toBe(false);
   });
 
   it('should return false for torrent v2', () => {
     const torrentV2 = {
       info: {
         name: 'example_file.mp4',
-        fileTree: {/* structure representing file tree for torrent v2 */},
+        fileTree: {/* structure representing file tree for torrent v2 */ },
         metaVersion: 2
       },
       infohash: Buffer.from('sometorrentinfohashv2'),

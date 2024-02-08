@@ -48,7 +48,6 @@ export function isTorrentv1(torrent: any): torrent is ITorrent1 {
     ITorrent1Schema.parse(torrent);
     return true;
   } catch (error) {
-    console.error(error);
     return false;
   }
 }
