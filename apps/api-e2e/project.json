@@ -15,9 +15,6 @@
         "jestConfig": "apps/api-e2e/jest.config.ts",
         "passWithNoTests": true
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }
