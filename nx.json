@@ -77,5 +77,8 @@
         "targetName": "lint"
       }
     }
-  ]
+  ],
+  "release": {
+    "projects": ["torrent-observer"]
+  }
 }

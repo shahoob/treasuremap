@@ -1,0 +1,27 @@
+{
+  "name": "torrent-observer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/torrent-observer/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/torrent-observer",
+        "tsConfig": "libs/torrent-observer/tsconfig.lib.json",
+        "packageJson": "libs/torrent-observer/package.json",
+        "main": "libs/torrent-observer/src/index.ts",
+        "assets": ["libs/torrent-observer/*.md"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/torrent-observer/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

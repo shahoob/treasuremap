@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@treasuremap/data": ["libs/data/src/index.ts"]
+      "@treasuremap/data": ["libs/data/src/index.ts"],
+      "torrent-observer": ["libs/torrent-observer/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
