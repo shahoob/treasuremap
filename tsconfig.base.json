@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@treasuremap/data": ["libs/data/src/index.ts"],
+      "@treasuremap/file-fixtures": ["libs/file-fixtures/src/index.ts"],
       "torrent-observer": ["libs/torrent-observer/src/index.ts"]
     }
   },

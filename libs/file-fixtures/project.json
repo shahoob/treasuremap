@@ -1,0 +1,24 @@
+{
+  "name": "file-fixtures",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/file-fixtures/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/file-fixtures",
+        "tsConfig": "libs/file-fixtures/tsconfig.lib.json",
+        "packageJson": "libs/file-fixtures/package.json",
+        "main": "libs/file-fixtures/src/index.ts",
+        "assets": ["libs/file-fixtures/*.md"]
+      }
+    },
+    "publish": {
+      "command": "node tools/scripts/publish.mjs file-fixtures {args.ver} {args.tag}",
+      "dependsOn": ["build"]
+    }
+  },
+  "tags": []
+}

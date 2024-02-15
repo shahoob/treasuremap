@@ -11,7 +11,7 @@ export type Torrent = ITorrent1 | ITorrent2 | IHybridTorrent;
  * @remarks
  * The idea with this is that it's an abstraction over the database,
  * allowing for not only an easier way to add a new database, but also easily mock it for testing.
- * All without the consumers knowing about all this stuff, just that they can call {@link findTorrentByInfohash} with expected results.
+ * All without the consumers knowing about all this stuff, just that they can call {@link findTorrentByInfohash} with expected results for example.
  *
  * @typeParam IDType - The type of ID used in the database
  */

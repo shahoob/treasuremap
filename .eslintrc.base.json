@@ -18,7 +18,8 @@
               }
             ]
           }
-        ]
+        ],
+        "no-warning-comments": "warn"
       }
     },
     {

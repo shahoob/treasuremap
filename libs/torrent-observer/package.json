@@ -1,4 +1,10 @@
 {
   "name": "torrent-observer",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "bencode": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/bencode": "^2.0.4"
+  }
 }
