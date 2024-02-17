@@ -1,5 +1,4 @@
-import { parseTorrent } from './parser';
-import fixtures from 'webtorrent-fixtures';
+import { parseTorrent, isMultiFile, isSingleFile } from './parser';
 
 describe('parseTorrent', () => {
   it('exists', () => {
@@ -10,3 +9,5 @@ describe('parseTorrent', () => {
   it.todo('parses a version 2 torrent');
   it.todo('parses a hybrid torrent');
 });
+
+

@@ -164,7 +164,13 @@ export interface ITorrent2 extends Omit<ITorrent1, 'info'> {
 export interface IHybridTorrent
   extends Omit<ITorrent1, 'info' | 'infohash'>,
     Omit<ITorrent2, 'info' | 'infohash'> {
-  info: ITorrent1['info'] & Omit<ITorrent2['info'], 'files'>;
+
+  info: ITorrent1['info'] & Omit<ITorrent2['info'], 'files'> & {
+    /**
+     * {@inheritDoc ITorrent1.info.files}
+     */
+    files: ITorrent1['info']['files']
+  };
   /**
    * The infohashes computed for both version 1 and version 2 respectively.
    */
