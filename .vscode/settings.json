@@ -1,5 +1,3 @@
 {
-    "nxConsole.generatorBlocklist": [
-        "@nestjs/*:*"
-    ]
+  "nxConsole.generatorBlocklist": ["@nestjs/*:*"]
 }

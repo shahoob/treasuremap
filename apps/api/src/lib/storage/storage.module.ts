@@ -9,7 +9,7 @@ import { BaseTorrentService } from './torrent/torrent.service';
         // TODO: Replace with real implementation
         return new BaseTorrentService();
       },
-    }
+    },
   ],
   exports: ['TorrentService'],
 })

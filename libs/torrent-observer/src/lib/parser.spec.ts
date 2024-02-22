@@ -9,5 +9,3 @@ describe('parseTorrent', () => {
   it.todo('parses a version 2 torrent');
   it.todo('parses a hybrid torrent');
 });
-
-

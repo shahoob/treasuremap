@@ -1,7 +1,12 @@
 import { decode, encode } from 'bencode-js';
 import { createHash } from 'node:crypto';
 import { ITorrent1, ITorrent2, IHybridTorrent } from './torrent.js';
-import { IRawTorrent1, IRawTorrent2, IRawHybridTorrent, IRawAnnounceListExtension } from './raw-torrent.js';
+import {
+  IRawTorrent1,
+  IRawTorrent2,
+  IRawHybridTorrent,
+  IRawAnnounceListExtension,
+} from './raw-torrent.js';
 
 export interface IAnnounceListExtension {
   announceList: string[][];
@@ -10,23 +15,26 @@ export interface IAnnounceListExtension {
 type RawTorrentType = IRawTorrent1 | IRawTorrent2 | IRawHybridTorrent;
 
 /**
-   * Checks if a torrent is a single file type.
-   *
-   * @remarks
-   * If you're wondering why the return type is what it is, this is a custom type guard ({@link https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates | more specifically type predicates}),
-   * and you must be new to TypeScript.
-   * It's a boolean yeah but typescript atleast knows the meaning of it.
-   *
-   * @param torrent The torrent to test
-   * @returns A boolean wether the torrent is a single file one.
-   */
-export function isSingleFile(torrent: unknown): torrent is IRawTorrent1<'single'> {
+ * Checks if a torrent is a single file type.
+ *
+ * @remarks
+ * If you're wondering why the return type is what it is, this is a custom type guard ({@link https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates | more specifically type predicates}),
+ * and you must be new to TypeScript.
+ * It's a boolean yeah but typescript atleast knows the meaning of it.
+ *
+ * @param torrent The torrent to test
+ * @returns A boolean wether the torrent is a single file one.
+ */
+export function isSingleFile(
+  torrent: unknown
+): torrent is IRawTorrent1<'single'> {
   // if key 'length' extsts on the root level (of the info dict)...
-  const result = 'length' in (torrent as IRawTorrent1<'single'>).info
-  // AND there isn't a 'files' key...
-    && !('files' in (torrent as IRawTorrent1<'multi'>).info);
+  const result =
+    'length' in (torrent as IRawTorrent1<'single'>).info &&
+    // AND there isn't a 'files' key...
+    !('files' in (torrent as IRawTorrent1<'multi'>).info);
   // then it's a single file torrent, resulting true, otherwise false.
-  return result
+  return result;
 }
 
 /**
@@ -37,13 +45,16 @@ export function isSingleFile(torrent: unknown): torrent is IRawTorrent1<'single'
  * @param torrent The torrent to test
  * @returns A boolean wether the torrent is a multi file one.
  */
-export function isMultiFile(torrent: unknown): torrent is IRawTorrent1<'multi'> {
+export function isMultiFile(
+  torrent: unknown
+): torrent is IRawTorrent1<'multi'> {
   // if key 'length' extsts on the root level (of the info dict)...
-  const result = !('length' in (torrent as IRawTorrent1<'single'>).info)
-  // AND there isn't a 'files' key...
-    && 'files' in (torrent as IRawTorrent1<'multi'>).info;
+  const result =
+    !('length' in (torrent as IRawTorrent1<'single'>).info) &&
+    // AND there isn't a 'files' key...
+    'files' in (torrent as IRawTorrent1<'multi'>).info;
   // then it's a single file torrent, resulting true, otherwise false.
-  return result
+  return result;
 }
 
 /**
@@ -53,9 +64,10 @@ export function isMultiFile(torrent: unknown): torrent is IRawTorrent1<'multi'> 
  */
 export function parseTorrent(
   torrent: string | Buffer
-): (ITorrent1 | ITorrent2 | IHybridTorrent) & (IAnnounceListExtension | undefined) {
-
-  const decodedRawTorrent: RawTorrentType & (IRawAnnounceListExtension | undefined) = decode(
+): (ITorrent1 | ITorrent2 | IHybridTorrent) &
+  (IAnnounceListExtension | undefined) {
+  const decodedRawTorrent: RawTorrentType &
+    (IRawAnnounceListExtension | undefined) = decode(
     typeof torrent === 'string' ? torrent : torrent.toString('utf-8')
   ) as IRawTorrent1 & (IRawAnnounceListExtension | undefined);
 
@@ -67,9 +79,9 @@ export function parseTorrent(
     announceList = [[decodedRawTorrent.announce]];
   }
 
-  const info: (ITorrent1)['info'] = {
+  const info: ITorrent1['info'] = {
     name: '',
-    files: []
+    files: [],
   };
 
   info.name = decodedRawTorrent.info.name;
@@ -77,16 +89,15 @@ export function parseTorrent(
   if (isSingleFile(decodedRawTorrent)) {
     info.files.push({
       path: [info.name],
-      length: decodedRawTorrent.info.length
+      length: decodedRawTorrent.info.length,
     });
   } else if (isMultiFile(decodedRawTorrent)) {
     for (const file of decodedRawTorrent.info.files) {
       info.files.push({
         path: file.path,
-        length: file.length
+        length: file.length,
       });
     }
-
   }
 
   return {

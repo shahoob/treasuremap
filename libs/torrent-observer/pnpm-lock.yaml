@@ -10,7 +10,9 @@ dependencies:
     version: 0.0.8
 
 packages:
-
   /bencode-js@0.0.8:
-    resolution: {integrity: sha512-D1wYF4KCNuO6H2vS2/tSJxqWtO4gsTrPSr95G/4v5VjrjS3rwBhkqVs3lJOisv9PXFdlWmxVNWCCfyU414z6pQ==}
+    resolution:
+      {
+        integrity: sha512-D1wYF4KCNuO6H2vS2/tSJxqWtO4gsTrPSr95G/4v5VjrjS3rwBhkqVs3lJOisv9PXFdlWmxVNWCCfyU414z6pQ==,
+      }
     dev: false
