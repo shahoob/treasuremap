@@ -1,4 +1,4 @@
-import { decode, encode } from 'bencode/index.js';
+import { decode, encode } from 'bencode-js';
 import { createHash } from 'node:crypto';
 import { ITorrent1, ITorrent2, IHybridTorrent } from './torrent.js';
 import { IRawTorrent1, IRawTorrent2, IRawHybridTorrent, IRawAnnounceListExtension } from './raw-torrent.js';
@@ -56,7 +56,7 @@ export function parseTorrent(
 ): (ITorrent1 | ITorrent2 | IHybridTorrent) & (IAnnounceListExtension | undefined) {
 
   const decodedRawTorrent: RawTorrentType & (IRawAnnounceListExtension | undefined) = decode(
-    typeof torrent === 'string' ? Buffer.from(torrent, 'utf8') : torrent
+    typeof torrent === 'string' ? torrent : torrent.toString('utf-8')
   ) as IRawTorrent1 & (IRawAnnounceListExtension | undefined);
 
   let announceList: IAnnounceListExtension['announceList'] | undefined;
