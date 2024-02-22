@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { ITorrent1, Torrentv2FileTree } from './torrent';
+import { ITorrent1, Torrentv2FileTree } from './torrent.js';
 
 export const ITorrent1Schema = z.object({
   created: z.date().optional(),

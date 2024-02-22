@@ -1,6 +1,6 @@
-import type { ITorrent1 } from './torrent';
-import { isTorrentv1 } from './torrent.validator';
-import { torrents } from './support/torrents';
+import type { ITorrent1 } from './torrent.js';
+import { isTorrentv1 } from './torrent.validator.js';
+import { torrents } from './support/torrents.js';
 
 describe('isTorrentv1', () => {
   it.each(torrents.valid.v1)(

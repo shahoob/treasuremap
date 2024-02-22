@@ -1,5 +1,5 @@
-export * from './lib/torrent-observer';
+export * from './lib/torrent-observer.js';
 
-export * from './lib/torrent';
-export * from './lib/torrent.validator';
-export * from './lib/parser';
+export * from './lib/torrent.js';
+export * from './lib/torrent.validator.js';
+export * from './lib/parser.js';

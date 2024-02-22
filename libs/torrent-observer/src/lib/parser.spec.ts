@@ -1,4 +1,4 @@
-import { parseTorrent, isMultiFile, isSingleFile } from './parser';
+import { parseTorrent, isMultiFile, isSingleFile } from './parser.js';
 
 describe('parseTorrent', () => {
   it('exists', () => {

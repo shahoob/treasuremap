@@ -1,7 +1,7 @@
-import { decode, encode } from 'bencode';
+import { decode, encode } from 'bencode/index.js';
 import { createHash } from 'node:crypto';
-import { ITorrent1, ITorrent2, IHybridTorrent } from './torrent';
-import { IRawTorrent1, IRawTorrent2, IRawHybridTorrent, IRawAnnounceListExtension } from './raw-torrent';
+import { ITorrent1, ITorrent2, IHybridTorrent } from './torrent.js';
+import { IRawTorrent1, IRawTorrent2, IRawHybridTorrent, IRawAnnounceListExtension } from './raw-torrent.js';
 
 export interface IAnnounceListExtension {
   announceList: string[][];
